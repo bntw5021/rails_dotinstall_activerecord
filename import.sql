@@ -4,5 +4,5 @@ create table posts (
     body text,
     created_at,
     updated_at
-)
+);
 
