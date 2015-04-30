@@ -1,18 +1,21 @@
 require 'active_record'
+require 'logger'
 
 ActiveRecord::Base.establish_connection(
     "adapter" => "sqlite3",
     "database" => "./blog.db"
 )
 
+ActiveRecord::Base.logger = Logger.new(STDOUT)
+
 class Post < ActiveRecord::Base
+    scope :top3, -> { order("created_at").limit(3) }
 end
 
-#p Post.where(:title => "title1", :id => "1")
-#p Post.where("title = ? and id = ?", "title1", 1)
-#p Post.where("title = :title and id = :id", {:title => "title1", :id => 1})
+#p Post.where(:id => 1..3)
+#p Post.where(:id => [1, 3])
 
-#p Post.where("id > ?", 2)
-p Post.where("body like ?", "hello%")
+#p Post.order("id desc").limit(3)
 
+p Post.top3
 
