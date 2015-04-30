@@ -6,12 +6,15 @@ ActiveRecord::Base.establish_connection(
 )
 
 class Post < ActiveRecord::Base
+    validates :title, :presence => true
+    validates :body, :length => { :minimum => 5 }
 end
 
-# delete; record fast
-# destroy: object slow
+post = Post.new(:body => "123")
 
-#Post.where(:id => 1..2).delete_all
-Post.find(3).destroy
+if !post.save
+    p post.errors.messages
+end
 
 p Post.all
+
