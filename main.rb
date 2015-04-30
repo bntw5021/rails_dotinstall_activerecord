@@ -8,24 +8,11 @@ ActiveRecord::Base.establish_connection(
 class Post < ActiveRecord::Base
 end
 
-# post = Post.new(:title => "title1", :body => "hello1")
-
-=begin
-post = Post.new
-post.title = "title2"
-post.body = "hello2"
-=end
-
-=begin
-post = Post.new do |p|
-    p.title = "title3"
-    p.body = "hello3"
-end
-=end
-
-Post.create(:title => "title4", :body => "hello4")
-
-# post.save
-
-p Post.all
+#p Post.all
+#p Post.first
+#p Post.last
+#p Post.last.title
+#p Post.find(3)
+#p Post.find_by_title("title2")
+p Post.find_by_title_and_id("title2", 3)
 
